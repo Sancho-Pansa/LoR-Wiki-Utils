@@ -1,0 +1,25 @@
+{
+  "name": "lorprocessor",
+  "version": "0.0.1",
+  "description": "Приложения для обработки данных о картах LoR",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sancho-Pansa/LoR-Wiki-Utils.git"
+  },
+  "author": "Sancho-Pansa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sancho-Pansa/LoR-Wiki-Utils/issues"
+  },
+  "homepage": "https://github.com/Sancho-Pansa/LoR-Wiki-Utils#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
