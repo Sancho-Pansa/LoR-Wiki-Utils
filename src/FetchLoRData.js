@@ -1,9 +1,16 @@
-function fetchLoRData(set, patch, locale) {
-  let url = new URL(new JsonAddress({set, patch, locale}).toUrlString());
-  console.log(url);
+export default async function fetchLoRData(set, patch, locale) {
+  let url = new URL(new JsonAddress({ set, patch, locale }).toUrlString());
+
+  let response = await fetch(url);
+  if(response.ok) {
+    return await response.json();
+  }
+  else {
+    throw new Error("Error");
+  }
 }
 
-function JsonAddress({patch, set, locale}) {
+function JsonAddress({ patch, set, locale }) {
   const URL = "https://dd.b.pvp.net/";
   this.patch = patch ?? "latest";
   this.set = set;
