@@ -17,7 +17,7 @@ export default class LoRCard {
     keywordRefs,
     categoryRefs,
     regions,
-    flavour,
+    flavor,
     artist,
     isHidden
   ) {
@@ -38,7 +38,7 @@ export default class LoRCard {
     this.keywordRefs = keywordRefs;
     this.categoryRefs = categoryRefs;
     this.regions = regions;
-    this.flavour = flavour;
+    this.flavor = flavor;
     this.artist = artist;
     this.isHidden = isHidden;
   }
