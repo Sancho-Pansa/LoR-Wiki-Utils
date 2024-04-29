@@ -1,4 +1,30 @@
+/**
+ * Класс, обозначающий карту Legends of Runeterra.
+ */
 export default class LoRCard {
+  /**
+   *
+   * @param {String} id
+   * @param {String} cardName
+   * @param {String} type
+   * @param {"Чемпион"|"Эпическая"|"Редкая"|"Обычная"|"None"} rarity
+   * @param {String[]} formats
+   * @param {String[]} subtype
+   * @param {String} supertype
+   * @param {String[]} keywords
+   * @param {Boolean} collectible
+   * @param {Number} cost
+   * @param {Number} health
+   * @param {Number} power
+   * @param {String} desc
+   * @param {String} lvlDesc
+   * @param {String[]} keywordRefs
+   * @param {String[]} categoryRefs
+   * @param {String[]} regions
+   * @param {String} flavor
+   * @param {String} artist
+   * @param {Boolean} isHidden
+   */
   constructor(
     id,
     cardName,
