@@ -28,7 +28,7 @@ export function parseLorData(jsonArray) {
 
     return new LoRCard(
       e.cardCode,
-      e.name,
+      e.name.replace(quotesRegex, "\\\""),
       e.type,
       rarity,
       e.formats,
