@@ -16,7 +16,7 @@ const quotesRegex = new RegExp(/"/g);
  */
 export function parseLorData(jsonArray) {
   regexCollection = getRegexes();
-  return jsonArray.map((e) => {
+  let cardArray = jsonArray.map((e) => {
     let rarity = _.capitalize(e.rarity).replace(/ое$/gm, "ая");
     rarity = rarity === "Нет" ? "None" : rarity;
     let description = addTipTemplate(e.descriptionRaw)
@@ -49,6 +49,9 @@ export function parseLorData(jsonArray) {
       false
     );
   }).sort((a, b) => a.id > b.id ? 1 : -1);
+
+  cardArray = guessHiddenCards(cardArray);
+  return cardArray;
 }
 
 /**
@@ -62,6 +65,27 @@ function addTipTemplate(description) {
     });
   });
   return description;
+}
+
+/**
+ * Данная функция пытается определить "скрытые" карты набора, т.е. карты, которые являются
+ * лишь вариантами исполнения одной и той же карты, и на самом деле не представлены как отдельный элемент.
+ *
+ * Критерии поиска: одноименные карты, причем у одной из них есть T в коде, а у одной из них - нет.
+ * @param {LoRCard[]} cardArray - ***сортированный*** массив карт
+ */
+function guessHiddenCards(cardArray) {
+  let currentName;
+  for(let card of cardArray) {
+    if(card.id.search(/\dT/) === -1 && card.supertype !== "Чемпион") {
+      currentName = card.cardName;
+      continue;
+    }
+    if(card.cardName === currentName) {
+      card.isHidden = true;
+    }
+  }
+  return cardArray;
 }
 
 /**
