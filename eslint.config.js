@@ -1,5 +1,5 @@
 import globals from "globals";
-import pluginJs from "@eslint/js";
+//import pluginJs from "@eslint/js";
 
 export default [
   {
@@ -17,10 +17,7 @@ export default [
         "error",
         "always"
       ],
-      "no-unusued-vars": [
-        "warn"
-      ]
+      "no-unused-vars": "warn"
     }
-  },
-  pluginJs.configs.recommended,
+  }
 ];
