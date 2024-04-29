@@ -3,9 +3,10 @@ import fetchLoRData from "./src/FetchLoRData.js";
 import { parseLorData } from "./src/ParseLoRData.js";
 import writeLuaFile from "./src/WriteLua.js";
 
-(async () => {
-  const patchVersion = "5.4";
-  const setNumber = 9;
+async function main() {
+  const args = process.argv;
+  const setNumber = args[2] ?? "9";
+  const patchVersion = args[3] ?? "5.4";
   let a = await fetchLoRData(setNumber);
   let parsed = parseLorData(a);
   let luaObject = {};
@@ -24,5 +25,8 @@ ${luaFile}
 }
 -- </pre>
 -- [[Category:Lua]]`;
-  writeLuaFile("Set9_V5.4", luaFile);
-})();
+  writeLuaFile(`Set${setNumber}_V${patchVersion}`, luaFile);
+  console.log("File writed");
+}
+
+main();
