@@ -32,7 +32,7 @@ export function parseLorData(jsonArray) {
       e.type,
       rarity,
       e.formats,
-      e.subtypes.forEach(_.capitalize),
+      e.subtypes.map(_.capitalize),
       e.supertype,
       e.keywords,
       e.collectible,
@@ -61,7 +61,7 @@ export function parseLorData(jsonArray) {
 function addTipTemplate(description) {
   regexCollection.forEach((e) => {
     description = description.replace(e.regex, (text) => {
-      return e.tip === text ? `{{tip|${e.tip}}}` : `{{tip|${e.tip}|${text}}}`;
+      return e.tip === text ? `{{Tip LoR|${e.tip}}}` : `{{Tip LoR|${e.tip}|${text}}}`;
     });
   });
   return description;
