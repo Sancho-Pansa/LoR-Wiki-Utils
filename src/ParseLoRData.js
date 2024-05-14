@@ -77,6 +77,7 @@ function addTipTemplate(description) {
 function guessHiddenCards(cardArray) {
   let currentName;
   for(let card of cardArray) {
+    // Если перед Т стоит цифра, значит это не Таргон (MT)
     if(card.id.search(/\dT/) === -1 && card.supertype !== "Чемпион") {
       currentName = card.cardName;
       continue;
