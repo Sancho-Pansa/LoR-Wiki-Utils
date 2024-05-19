@@ -1,5 +1,5 @@
 import jsonToLua from "json-to-lua";
-import fetchLoRData from "./src/FetchLoRData.js";
+import fetchLoRData from "./src/riot/FetchLoRData.js";
 import { parseLorData } from "./src/ParseLoRData.js";
 import writeLuaFile from "./src/WriteLua.js";
 
