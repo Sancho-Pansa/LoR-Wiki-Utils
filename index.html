@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin referrerpolicy="no-referrer"></script>
+    <title>LoR Wiki Card Editor</title>
+  </head>
+  <body>
+    <h1>Редактор карт Legends of Runeterra Wiki</h1>
+    <label>
+      Укажите номер набора
+      <input type="number" id="setSelectionButton" />
+    </label>
+  <script src="./src/electron-ui/renderer.js"></script>
+  </body>
+</html>
