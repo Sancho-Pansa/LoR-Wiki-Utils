@@ -1,3 +1,3 @@
 $("#setSelectionButton").on("click", () => {
-  window.electronAPI.setTitle("A");
+  electronAPI.setTitle("A");
 });
