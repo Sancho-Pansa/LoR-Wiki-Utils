@@ -1,34 +1,46 @@
 {
   "name": "lorprocessor",
-  "version": "0.0.1",
-  "description": "Приложения для обработки данных о картах LoR",
-  "type": "module",
-  "main": "main.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "build": "node main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Sancho-Pansa/LoR-Wiki-Utils.git"
-  },
+  "version": "1.0.0",
+  "description": "Electron app for Wiki LoR Data manipulation",
+  "main": "./out/main/index.js",
   "author": "Sancho-Pansa",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Sancho-Pansa/LoR-Wiki-Utils/issues"
   },
   "homepage": "https://github.com/Sancho-Pansa/LoR-Wiki-Utils#readme",
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:linux": "npm run build && electron-builder --linux"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sancho-Pansa/LoR-Wiki-Utils.git"
+  },
   "devDependencies": {
     "@eslint/js": "^9.1.1",
     "@stylistic/eslint-plugin-js": "^2.1.0",
     "electron": "^30.0.6",
+    "electron-vite": "^2.2.0",
     "eslint": "^9.1.1",
     "globals": "^15.0.0",
     "jquery": "^3.7.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "@electron-toolkit/eslint-config": "^1.0.2",
+    "@electron-toolkit/eslint-config-prettier": "^2.0.0",
+    "electron-builder": "^24.9.1",
+    "prettier": "^3.2.4",
+    "vite": "^5.0.12"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.0",
+    "@electron-toolkit/utils": "^3.0.0"
   }
 }

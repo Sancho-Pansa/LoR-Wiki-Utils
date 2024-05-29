@@ -1,9 +1,9 @@
 import globals from "globals";
 import stylisticJs from "@stylistic/eslint-plugin-js";
-//import pluginJs from "@eslint/js";
 
 export default [
   {
+    //extends: ['eslint:recommended', '@electron-toolkit', '@electron-toolkit/eslint-config-prettier'],
     plugins: {
       "@stylistic/js": stylisticJs
     },
