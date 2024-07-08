@@ -19,7 +19,10 @@ export default [
           "for": { "after": false },
           "while": { "after": false },
         }
-      }]
+      }],
+      "newline-per-chained-call": [
+        "warn", { "ignoreChainWithDepth": 3 }
+      ],
     }
   }
 ];
