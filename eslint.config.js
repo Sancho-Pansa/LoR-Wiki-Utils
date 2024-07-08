@@ -1,19 +1,19 @@
-import globals from "globals";
-import stylisticJs from "@stylistic/eslint-plugin-js";
-//import pluginJs from "@eslint/js";
+import pluginVue from "eslint-plugin-vue";
 
 export default [
+  // add more generic rulesets here, such as:
+  // js.configs.recommended,
+  ...pluginVue.configs["flat/recommended"],
+  // ...pluginVue.configs['flat/vue2-recommended'], // Use this if you are using Vue.js 2.x.
   {
-    plugins: {
-      "@stylistic/js": stylisticJs
-    },
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
     rules: {
+      // override/add rules settings here, such as:
+      // 'vue/no-unused-vars': 'error'
       "no-unused-vars": "warn",
-      "@stylistic/js/indent": ["error", 2],
-      "@stylistic/js/quotes": ["warn", "double"],
-      "@stylistic/js/semi": ["error", "always"],
-      "@stylistic/js/keyword-spacing": ["warn", {
+      "indent": ["error", 2],
+      "quotes": ["warn", "double"],
+      "semi": ["error", "always"],
+      "keyword-spacing": ["warn", {
         "overrides": {
           "if": { "after": false },
           "for": { "after": false },
@@ -21,6 +21,5 @@ export default [
         }
       }]
     }
-
   }
 ];
