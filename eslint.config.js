@@ -18,6 +18,7 @@ export default [
           "if": { "after": false },
           "for": { "after": false },
           "while": { "after": false },
+          "catch": { "after": false }
         }
       }],
       "newline-per-chained-call": [
