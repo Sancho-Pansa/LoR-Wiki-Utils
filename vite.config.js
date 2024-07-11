@@ -16,12 +16,11 @@ export default defineConfig({
   server: {
     cors: false,
     proxy: {
-      "^/ru.*": {
+      "/wiki": {
         target: "https://leagueoflegends.fandom.com/",
         changeOrigin: true,
-        secure: false,
-        //rewrite: (path) => path.replace(/^\/proxy/, ""),
-      },
+        secure: false
+      }
     },
   }
 });

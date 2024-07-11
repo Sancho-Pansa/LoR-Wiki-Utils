@@ -3,7 +3,7 @@
  *
  * Запрос состоит из вызова функции из Модуль:LoRData по преобразованию указанной таблицы Lua в JSON с возвращением результата.
  * @param {Number} set номер сезона
- * @returns {Object<string, Object>}
+ * @returns {Promise<Object<string, Object>>}
  */
 export default async function fetchWikiData(set) {
   let url = new URL("https://leagueoflegends.fandom.com/ru/api.php");
@@ -18,7 +18,7 @@ export default async function fetchWikiData(set) {
   let urlParams = new URLSearchParams(apiConfig);
   url.search = urlParams.toString();
   try {
-    let result = await fetch(url);
+    let result = await fetch(url, { mode: "cors" });
     if(result.ok) {
       let responseBody = await result.json();
       let json = responseBody.expandtemplates.wikitext;
@@ -33,7 +33,7 @@ export default async function fetchWikiData(set) {
       throw error;
     }
     if(error instanceof SyntaxError) {
-      console.error("Error during result JSON parsing");
+      console.error("Error during result JSON parsing / Fandom returned Lua Error");
       throw error;
     }
   }
