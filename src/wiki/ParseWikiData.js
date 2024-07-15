@@ -5,8 +5,8 @@
  * @param {Number} set номер сезона
  * @returns {Promise<Object<string, Object>>}
  */
-export default async function fetchWikiData(set) {
-  let url = new URL("https://leagueoflegends.fandom.com/ru/api.php");
+export default async function fetchWikiData(set, baseUrl = "https://leagueoflegends.fandom.com") {
+  let url = new URL(`${baseUrl}/ru/api.php`);
   const wikiLuaCall = `{{#invoke:LoRData|toJson|${set}}}`;
   let apiConfig = {
     action: "expandtemplates",
@@ -18,7 +18,7 @@ export default async function fetchWikiData(set) {
   let urlParams = new URLSearchParams(apiConfig);
   url.search = urlParams.toString();
   try {
-    let result = await fetch(url, { mode: "cors" });
+    let result = await fetch(url);
     if(result.ok) {
       let responseBody = await result.json();
       let json = responseBody.expandtemplates.wikitext;

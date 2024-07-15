@@ -14,12 +14,14 @@ const cardsList = ref([]);
 onMounted(async () => {
   let selectedSet = props.set.match(/^\d+/m); // Для кодов вида "6cde", "8ab" и т. п.
   try {
-    let cardsTable = await fetch("/wiki");
+    let response = await fetch(`http://localhost:10000/?set=${selectedSet}`);
+    let cardsTable = await response.json();
     cardsList.value = Object.keys(cardsTable).map((id) => {
       cardsTable[id].id = id;
       return cardsTable[id];
     }).sort((a, b) => a.id > b.id ? 1 : -1);
   } catch(error) {
+    console.error(error);
     // TODO: Полноценный вывод ошибки
     console.error("Error");
   }

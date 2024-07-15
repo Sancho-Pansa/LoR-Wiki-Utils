@@ -12,15 +12,5 @@ export default defineConfig({
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url))
     }
-  },
-  server: {
-    cors: false,
-    proxy: {
-      "/wiki": {
-        target: "https://leagueoflegends.fandom.com/",
-        changeOrigin: true,
-        secure: false
-      }
-    },
   }
 });
