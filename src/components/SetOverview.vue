@@ -16,7 +16,7 @@ const router = useRouter();
 onMounted(async () => {
   let selectedSet = props.set.match(/^\d+/m); // Для кодов вида "6cde", "8ab" и т. п.
   try {
-    let response = await fetch(`http://localhost:10000/?set=${selectedSet}`);
+    let response = await fetch(`http://localhost:10000/${selectedSet}`);
     let cardsTable = await response.json();
     cardsList.value = Object.keys(cardsTable).map((id) => {
       cardsTable[id].id = id;
