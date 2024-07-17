@@ -5,7 +5,7 @@ export default class LoRCard {
   /**
    *
    * @param {String} id
-   * @param {String} cardName
+   * @param {String} name
    * @param {String} type
    * @param {"Чемпион"|"Эпическая"|"Редкая"|"Обычная"|"None"} rarity
    * @param {String[]} formats
@@ -27,7 +27,7 @@ export default class LoRCard {
    */
   constructor(
     id,
-    cardName,
+    name,
     type,
     rarity,
     formats,
@@ -48,7 +48,7 @@ export default class LoRCard {
     isHidden
   ) {
     this.id = id;
-    this.cardName = cardName;
+    this.name = name;
     this.type = type;
     this.rarity = rarity;
     this.formats = formats;

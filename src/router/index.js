@@ -15,9 +15,9 @@ const router = createRouter({
       component: () => import("@/views/SetView.vue")
     },
     {
-      path:"/set/:setNumber/:cardId",
-      name: "cards",
-      component: () => import("@/views/CardsView.vue")
+      path:"/set/:setNumber/:cardCode",
+      name: "card",
+      component: () => import("@/views/CardView.vue")
     }
   ]
 });

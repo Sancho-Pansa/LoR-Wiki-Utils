@@ -79,10 +79,10 @@ function guessHiddenCards(cardArray) {
   for(let card of cardArray) {
     // Если перед Т стоит цифра, значит это не Таргон (MT)
     if(card.id.search(/\dT/) === -1 && card.supertype !== "Чемпион") {
-      currentName = card.cardName;
+      currentName = card.name;
       continue;
     }
-    if(card.cardName === currentName) {
+    if(card.name === currentName) {
       card.isHidden = true;
     }
   }

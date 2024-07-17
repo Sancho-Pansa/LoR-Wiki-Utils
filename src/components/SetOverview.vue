@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { cloneDeep as _cloneDeep } from "lodash";
+import { useLoRStore } from "@/stores/LoRStore.js";
 
 const props = defineProps({
   set: {
@@ -15,6 +16,7 @@ const cardsList = ref([]);
 const filteredCards = ref([]);
 
 const router = useRouter();
+const store = useLoRStore();
 
 onMounted(async () => {
   let selectedSet = props.set.match(/^\d+/m); // Для кодов вида "6cde", "8ab" и т. п.
@@ -26,6 +28,7 @@ onMounted(async () => {
       return cardsTable[id];
     }).sort((a, b) => a.id > b.id ? 1 : -1);
     filteredCards.value = _cloneDeep(cardsList.value);
+    store.$patch({ setList: cardsList.value });
   } catch(error) {
     console.error(error);
     // TODO: Полноценный вывод ошибки
@@ -41,20 +44,23 @@ function filterResults($event) {
   let enteredText = $event.target.value;
   filteredCards.value = cardsList.value.filter((card) => {
     return card.id.search(enteredText) > -1 || card.name.search(enteredText) > -1;
-  })
+  });
 }
 
 function viewCardData(id) {
-  router.push(`${router.currentRoute.value.path}/card/${id}`);
+  store.$patch({ selectedCard: cardsList.value.find((e) => e.id === id) });
+  router.push(`${router.currentRoute.value.path}/${id}`);
 }
 </script>
 <template>
   <header class="set-header">
     <div>Сезон {{ set }}</div>
-    <input type="text" class="set-filter"
+    <input
+      v-model="cardFilter"
+      type="text"
+      class="set-filter"
       placeholder="Введите фильтр"
       @input="filterResults"
-      v-model="cardFilter"
     />
   </header>
   <div class="cards-grid">
