@@ -1,0 +1,12 @@
+{
+  "name": "lor-daemon-wiki",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Node server for fetching data from Fandom API",
+  "main": "src/WikiDaemon.js",
+  "scripts": {
+    "test": "vitest ./src/ParseWikiData.test.js"
+  },
+  "author": "Sancho-Pansa",
+  "license": "ISC"
+}
