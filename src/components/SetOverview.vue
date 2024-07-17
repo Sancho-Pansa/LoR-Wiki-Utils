@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { cloneDeep as _cloneDeep } from "lodash";
 
 const props = defineProps({
   set: {
@@ -9,7 +10,9 @@ const props = defineProps({
   }
 });
 
+const cardFilter = ref("");
 const cardsList = ref([]);
+const filteredCards = ref([]);
 
 const router = useRouter();
 
@@ -22,28 +25,88 @@ onMounted(async () => {
       cardsTable[id].id = id;
       return cardsTable[id];
     }).sort((a, b) => a.id > b.id ? 1 : -1);
+    filteredCards.value = _cloneDeep(cardsList.value);
   } catch(error) {
     console.error(error);
     // TODO: Полноценный вывод ошибки
     console.error("Error");
   }
-
 });
+
+/**
+ *
+ * @param {KeyboardEvent} $event
+ */
+function filterResults($event) {
+  let enteredText = $event.target.value;
+  filteredCards.value = cardsList.value.filter((card) => {
+    return card.id.search(enteredText) > -1 || card.name.search(enteredText) > -1;
+  })
+}
 
 function viewCardData(id) {
   router.push(`${router.currentRoute.value.path}/card/${id}`);
 }
 </script>
 <template>
-  <div
-    v-for="(card, index) in cardsList"
-    :key="index"
-  >
-    <span
-      class="buttonesque"
-      @click="viewCardData(card.id)"
-    >
-      {{ card.id }} :: {{ card.name }}
-    </span>
+  <header class="set-header">
+    <div>Сезон {{ set }}</div>
+    <input type="text" class="set-filter"
+      placeholder="Введите фильтр"
+      @input="filterResults"
+      v-model="cardFilter"
+    />
+  </header>
+  <div class="cards-grid">
+    <div v-for="(card, index) in filteredCards" :key="index">
+      <button class="card-button" @click="viewCardData(card.id)">
+        {{ card.id }} :: {{ card.name }}
+      </button>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.set-header {
+  text-align: center;
+  font-size: 3rem;
+  padding: 2vh 0;
+}
+
+.set-filter {
+  font-size: 1.5rem;
+  min-width: 50vw;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-content: center;
+  justify-items: stretch;
+  padding: 0 10%;
+}
+
+.card-button {
+  background-color: var(--background-main);
+  border: 1px solid var(--borders-main);
+  color: rgb(192, 182, 160);
+  line-height: 2.5em;
+  font-size: 16px;
+  min-width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-out;
+}
+
+.card-button:hover {
+  box-shadow: 0px 0px 10px 5px var(--text-secondary);
+  cursor: pointer;
+  color: var(--background-main);
+  background-color: var(--text-main);
+}
+
+.card-button:active {
+  background-color: var(--text-secondary);
+  font-weight: bold;
+}
+</style>
