@@ -1,6 +1,6 @@
 import http from "http";
 import url from "url";
-import fetchLoRData from "./../riot/FetchLoRData.js";
+import fetchWikiData from "./ParseWikiData.js";
 
 const port = 10000;
 
@@ -9,7 +9,7 @@ const server = http.createServer(async (req, res) => {
   const setNumber = parsedUrl.query.set;
   let result = {};
   try {
-    result = await fetchLoRData(setNumber);
+    result = await fetchWikiData(setNumber);
   } catch(e) {
     res.statusCode = 400;
     res.setHeader("Content-Type", "text/plain");
