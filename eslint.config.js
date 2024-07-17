@@ -24,6 +24,13 @@ export default [
       "newline-per-chained-call": [
         "warn", { "ignoreChainWithDepth": 3 }
       ],
+      "vue/max-attributes-per-line": [
+        "warn", {
+          "singleline": {
+            "max": 3
+          }
+        }
+      ]
     }
   }
 ];
