@@ -1,0 +1,15 @@
+{
+  "name": "lor-daemon-riot",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Web server for proxying request to Riot Games API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Sancho-Pansa",
+  "license": "ISC"
+}
