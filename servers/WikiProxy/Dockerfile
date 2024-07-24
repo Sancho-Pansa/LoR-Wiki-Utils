@@ -33,6 +33,7 @@ COPY . .
 
 # Expose the port that the application listens on.
 EXPOSE 10000
+EXPOSE 10001
 
 # Run the application.
 CMD ["node", "src/WikiDaemon.js"]
