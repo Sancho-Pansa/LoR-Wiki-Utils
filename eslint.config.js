@@ -30,6 +30,12 @@ export default [
             "max": 3
           }
         }
+      ],
+      "vue/html-self-closing": ["warn", {
+          "html": {
+            "void": "always"
+          }
+        }
       ]
     }
   }
