@@ -3,6 +3,7 @@ import MainMenu from "@/components/MainMenu.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  strict: true,
   routes: [
     {
       path: "/",
