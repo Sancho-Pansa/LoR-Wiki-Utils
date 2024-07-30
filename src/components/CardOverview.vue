@@ -20,15 +20,7 @@ let props = defineProps({
 const store = useLoRStore();
 const { selectedCard } = storeToRefs(store);
 const cardName = ref(store.selectedCard.name);
-const cardUrl = ref("");
 const selectedCardJson = ref(JSON.stringify(selectedCard.value, null, 2));
-
-onMounted(async () => {
-  let result = await fetch(`http://localhost:10001/${props.cardCode}.png`);
-  if(result.ok) {
-    cardUrl.value = (await result.text()).replace(/cb=\d+/gm, "");
-  }
-});
 
 </script>
 <template>
@@ -57,7 +49,7 @@ onMounted(async () => {
       </Tabs>
     </section>
     <section class="card-grid__right">
-      <Tabs value="data">
+      <Tabs value="data-forms">
         <TabList>
           <Tab value="data-forms">
             Формы
